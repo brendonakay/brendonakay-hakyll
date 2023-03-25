@@ -1,14 +1,11 @@
 ---
 title: About
 ---
-My name is Brendon Alan Kay, which I usually abbreviate Brendon A. Kay. To
-distinguish me from all of the other Brendon Kays.
+Software Engineer who has experience with backend web and data systems.
 
-Lately obsessed with functional programming. I've always been interested in the
-intersection between math and computer science. Functional programming bridges
-that gap nicely.
+Lately obsessed with functional programming.
 
-## Mathematical interests
+## Self Study | Interests
 
 * Algorithms
 * Linear Algebra
