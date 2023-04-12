@@ -1,5 +1,5 @@
 ---
-title: Bootstrapping my website
+title: Bootstrapping this site
 author: Brendon A. Kay
 tags: hakyll, haskell, hugo, functional programming
 ---
