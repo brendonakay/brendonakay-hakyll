@@ -4,7 +4,6 @@ author: Brendon A. Kay
 tags: haskell, algorithms
 ---
 
-## Linear search
 Fetching the kth element of a list takes Θ(k) steps. [[1]](##1)
 
 One method for making `fetch` more efficient is using a random-access list.
@@ -51,11 +50,27 @@ consT t1 (Zero: xs) = One t1: xs
 consT t1 (One t2: xs) = Zero: consT (node t1 t2) xs
 ```
 
+Creating a random-access list is tough. The binary representation of the length of the list
+is a bit of a trip. Thankfully, since I am learning about some basic algorithms,
+there is a standard Data package. [[2]](##2)
+
+# Conclusion
+Using random-access lists is a bit cumbersome. That could easily be user error.
+
 # TODO
-  - [ ] benchmarks
+  - [.] benchmarks
+    - Maybe skip the benchmarks? Working with this data structure is proving
+      challenging. It might be best to wrap this up and move on to a divide and
+      conquer algorithm.
   - [ ] Conclusion
   - [ ] Revision
 
 # References
 ## 1
 Bird, Richard; Gibbons, Jeremy. Algorithm Design with Haskell (p. 47). Cambridge University Press. Kindle Edition.
+
+## 2
+https://hackage.haskell.org/package/random-access-list-0.2/docs/Data-RandomAccessList.html
+
+## 3
+https://doisinkidney.com/posts/2020-05-02-more-random-access-lists.html
