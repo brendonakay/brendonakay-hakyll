@@ -3,6 +3,7 @@
 # TODO
 - [ ] Better code syntax highlighting. Could this be a CSS library?
 - [ ] Branded color palette.
+- [ ] More articles.
 
 # DONE
 - [x] Add resume page and link

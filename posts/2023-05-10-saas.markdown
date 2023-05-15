@@ -1,0 +1,49 @@
+---
+title: SaaS
+author: Brendon A. Kay
+tags: haskell, saas
+---
+
+During a discussion with a colleague I was caused to reflect on my career.
+With that, I discovered that I have worked at some form of a SaaS company for
+the majority of my career.
+
+SaaS is everywhere. Wikipedia's definition is as follows
+
+> Software as a service is a software licensing and delivery model in which software is licensed on a subscription basis and is centrally hosted. SaaS is also known as on-demand software, web-based software, or web-hosted software.
+
+I've always considered myself a "backend" "software engineer", but these
+are two words are roles within the overall SaaS industry. I think my "software engineer"-ing
+skills are transferable, but the pretext "backend" relegates me to being a SaaS
+SE.
+
+Not that this is a bad thing, since this is all I know. I haven't worked in
+video games, embedded, computer graphics. But even these things are becoming
+some kind of service lately.
+
+During my discussion with my colleague, I told him my revelation and we
+discussed what SaaS businesses really were. Eventually we landed on the topic of
+authentication.
+
+A common implementation for a SaaS product is a web application.
+
+During my experiment I struggled with setting up an up-to-date `gulp` or
+`webpack` development environment. Luckily, I found a template to use for the
+JavaScript ecosystem boilerplate. I think the important lesson here is to accept
+help from the community whenever possible. If building a product, time-to-market
+matters. It may not matter as much as building robust, secure, type-safe code.
+But it's not nothing.
+
+# Experiment
+
+# Things I've Learned
+- Elm for Frontend
+- Webpack for developing Elm
+
+## TODO
+- Set up demo web app to authenticate
+- Microservice or SOA style
+- Use k8s or something fun for hosting
+
+# Resources
+https://auth0.com/blog/creating-your-first-elm-app-part-2/
