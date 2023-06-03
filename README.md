@@ -4,6 +4,7 @@
 - [ ] Better code syntax highlighting. Could this be a CSS library?
 - [ ] Branded color palette.
 - [ ] More articles.
+- [ ] Draft blog posts.
 
 # DONE
 - [x] Add resume page and link
@@ -12,3 +13,13 @@
       page.
 - [x] Fill out Contact page
 - [x] First blog post
+
+# Blog post ideas
+- Distributed systems
+    - Everything is a distributed system. Multithreaded programs, web
+      applications, alcoholics anonymous.
+- Stoicism and imposter syndrome
+- Whatever features get added from the TODO list.
+- 99 Problems
+- Formal methods
+- Type level programming

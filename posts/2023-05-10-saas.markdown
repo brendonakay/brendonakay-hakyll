@@ -34,16 +34,22 @@ help from the community whenever possible. If building a product, time-to-market
 matters. It may not matter as much as building robust, secure, type-safe code.
 But it's not nothing.
 
+# On to the backend
+The Frontend effort was kind of arduous. I got there eventually with the help of
+open source software and RTFM. Now, on to the backend: Haskell Servant.
+
+Trying out the servant-elm example repo first. This is very helpful, but I'll
+build a brand new project based off these two.
+
 # Experiment
 
 # Things I've Learned
 - Elm for Frontend
 - Webpack for developing Elm
+- Haskell Servant for backend
 
 ## TODO
 - Set up demo web app to authenticate
 - Microservice or SOA style
 - Use k8s or something fun for hosting
-
-# Resources
-https://auth0.com/blog/creating-your-first-elm-app-part-2/
+- Link blog posts and resources
