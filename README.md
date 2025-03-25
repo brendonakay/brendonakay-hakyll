@@ -24,3 +24,4 @@ he past.
 
 - [ ] Make a script that publishes posts.
 - [ ] Add tags.
+  - https://javran.github.io/posts/2014-03-01-add-tags-to-your-hakyll-blog.html
