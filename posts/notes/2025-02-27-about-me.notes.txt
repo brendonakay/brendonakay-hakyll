@@ -1,0 +1,28 @@
+# Outline
+
+Use my voice. Be personal. Be opinionated, but not derisive.
+
+## Background section
+done.
+
+## Interests sections
+- [x] NeoVim as preferred editor.
+- [x] Interest in mathematics.
+  - Algebra
+  - Category Theory
+  - Linear Algebra
+- [x] Interest in how mathematics relates to functional programming.
+- [x] FP advocate.
+- [x] Writing efficient and correct software systems.
+- [x] My favorite language as of right now is Haskell.
+
+# Ambitions
+
+Keep it short.
+
+# Closing
+
+Link to stuff, how to contact me, etc.
+
+# Resources
+(https://en.wikipedia.org/wiki/Elegance)
