@@ -1,85 +1,55 @@
 ---
-title: Using `codecompanion.nvim`
+title: Coding with LLMs and `codecompanion.nvim`
 author: Brendon
 ---
 
-Let's get this out of the way; AI is a tool. I've had mixed success with
-Copilot's autocomplete feature, but the chat can be really useful. If you've
-ever heard of Cursor before, it tries to improve on the developer experience by
-going beyond autocomplete suggestions like Copilot, and integrating the chat
-with code diffs.
+In this post I'm going to discuss using LLM tools integrated into my favorite
+editor, NeoVim. Specifically, I'll be discussing my thoughts on the NeoVim
+plugin `codecompanion.nvim`. I'll refer to it as just Codecompanion from this
+point on. The LLM that I will use with Codecompanion is GitHub Copilot. I know
+there are likely better ones out there. I plan to look into Claude in the
+future.
 
-I recently discovered `codecompanion.nvim` which aims to provide a similar
-experience. Per their helpfile, `:h codecompanion.txt`, it reads,
+Before I continue, I'd like to preface this article with a statement: I am not
+an LLM expert. I am just learning, like a lot of other folks, and so I might be
+using these things incorrectly or inefficiently. Please reach out and let me
+know if that's the case.
 
-> CodeCompanion is a productivity tool which streamlines how you develop with
-> LLMs, in Neovim.
+Also, I'm not some self-identified "vibe coder". Nor do I think LLMs, or "AI",
+are going to dramatically change our lives for better or worse. I think these
+are new tools and we will be learning how to use them and integrate with them
+over the coming years. It may be that they make certain tasks obsolete, as we'll
+see in this post, but also, I don't think they're quite there yet to supersede
+entire populations of software engineers. People whose job it is to wrangle the
+complexity of business logic and computer systems. They do seem able to make us
+more productive in this endeavour, though.
 
-All documentation referred to in this article will be sourced from the
-Codecompanion NeoVim help document, unless otherwise specified.
+<!--TODO: Add link for Cursor-->
 
-# Prerequisites
+# Background
 
-Make sure you have an account with an LLM. I'm going to use GitHub Copilot with
-Claude enabled.
+Unless you are lucky or extremely intentional in avoiding it, you have
+probably experienced the LLM hype in one form or another. For most software
+engineers, this has come in the form of coding assistance. Some folks
+will just use the basic chat web interface, like chatgpt.com. Others are
+beginning to use fully integrated IDEs like Cursor.
 
-NeoVim is another obvious one that you may want installed. I will assume the
-reader is fairly familiar with this tool I will assume the reader is fairly
-familiar with this tool.
+Cursor's product provides features that take chatting with the LLM a step
+furthor. For example, while chatting with the LLM you can have it diff your
+buffer with code sugeestions. This is a seamless experience since most software
+engineers are familiar with diff tools. Mostly from having to deal with the
+unfortunate situation of merge conflicts. Either way, it allows you to be
+selectively choose code suggestions right there in your editor. No going
+back-and-forth between chat windows and manually copying the code suggestions.
 
-# Chat
+<!--TODO: Link NeoVim's Copilot plugin.-->
 
-Useful command:
+There are other features as well, such as in-line code suggestions. I've had
+mixed experience with the in-line features. So far, I have only used Copilot's
+NeoVim plugin for this. If I were to guess, I'd say it's about 40% successful in
+suggesting the right code.
 
-> `gy` to yank the last codeblock in the chat buffer
-
-One feature I really like is default prompts. These are prompts you can enter
-into an LLM chat in a few words that are often repeated. CodeCompanion comes
-with the following default prompts. Here is a list of these as of this writing:
-
-- `Explain` - Explain how code in a buffer works
-- `Fix Code` - Fix the selected code
-- `Explain LSP Diagnostics` - Explain the LSP diagnostics for the selected code
-- `Unit Tests` - Generate unit tests for selected code
-- `Generate a Commit Message` - Generate a commit message
-
-These, combined with the `@editor` agent discussed later, make up the bulk of
-the benefits I have realized from using this plugin.
-
-# Variables
-
-> Variables allow you to share data about the current state of Neovim with an
-> LLM.
-
-# Slash commands
-
-> Slash Commands enable you to quickly add context to the chat buffer.
-
-`/WORKSPACE` seems very powerful. Especially with the ability to build your own.
-`codecompanion-extending-workspace`
-
-# Agents / Tools
-
-The |codecompanion-usage-chat-buffer-agents-editor| tool enables an LLM to
-modify code in a Neovim buffer. This is especially useful if you do not wish to
-manually apply an LLM’s suggestions yourself. Simply tag it in the chat
-buffer with `@editor`.
-
-# Conclusion
-
-Using Codecompanion has been great. The documentation is well written and rich
-with examples.
-
-<!--TODO: Link home manager config-->
-
-If you would like to check out my simple config, please see my Nixvim
-homemanager congiuration.
-
-You can probably use `codecompanion-usage-action-palette` to pimp out your key
-bindings.
-
-Check out https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/config.luafiles
-for some example configs.
-
-This is just the tip of the iceberg with this tool. Agentic workflows would be
-an interesting topic to cover in the future.
+Then I discovered the Codecompanion project. This was at work, when a coworker
+posted about it in our Vim channel. Codecompanion provides a lot of the same
+features as Cursor, but in NeoVim, and for free. Although I do encourage anyone
+using it to donate what they can.

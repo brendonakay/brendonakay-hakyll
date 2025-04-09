@@ -1,5 +1,9 @@
 # Features to cover
-- [ ] General usage
-- [ ] Variables
-- [ ] Slash commands
-- [ ] Agents / Tools
+- [.] General usage
+- [.] Variables
+- [.] Slash commands
+- [.] Agents / Tools
+- [.] Example
+
+# Example
+Use Diceball project as an example of using these commands.
