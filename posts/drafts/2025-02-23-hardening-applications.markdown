@@ -3,8 +3,6 @@ title: Hardening Applications
 author: Brendon
 ---
 
-foo
-
 # Hardening Applications
 
 ## Outline

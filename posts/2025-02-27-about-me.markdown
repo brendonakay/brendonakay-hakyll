@@ -15,7 +15,7 @@ professional qualities, but some of these topics can be a bit personal, too.
 Hope you enjoy my ranting and please feel free to reach out with any opinions
 of your own, corrections, or what-have-you.
 
-# Background
+## Background
 
 I have worked mostly as a back-end software engineer making web applications my
 whole career. With a little data engineering and business intelligence sprinkled
@@ -58,7 +58,7 @@ topic.
 
 <!--TODO: Link Curry Howard Isomorphism-->
 
-# Interests
+## Interests
 
 So, I am continuously fascinated by the importance and impact mathematics has on
 our level of human thought. I myself only have undergraduate training in math,
@@ -83,13 +83,13 @@ Go is great! Slap some SQLite or Postgres in there and we can get a lot done.
 But I think it would be really, really cool to dive deeper into this world of
 Algebra, Computation, and thought.
 
-# Ambitions
+## Ambitions
 
 It is my ambition to learn as much mathematics and functional programming as
 possible without burning myself out. So, that's what I think I will write about
 the most; things I am learning.
 
-# Myself, about
+## Myself, about
 
 One last addition before I wrap things up. I'd like to mention a few little
 details about my preferred dev environment, especially because these are likely

@@ -10,7 +10,7 @@ these preferences are not superseded by the wisdom, "Use the right tool for the
 job".
 
 Besides my professional experience, I am deeply interested in functional
-programming and related mathemaical topics.
+programming and related math topics.
 
 ## Constultancy
 

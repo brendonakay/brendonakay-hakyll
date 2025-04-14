@@ -7,3 +7,139 @@
 
 # Example
 Use Diceball project as an example of using these commands.
+
+# Draft 1
+
+AI is a tool. I've had mixed success with Copilot's autocomplete feature, but
+the chat can be really useful. If you've ever heard of Cursor before, it tries
+to improve on the developer experience by going beyond autocomplete suggestions
+like Copilot, and integrating the chat with code diffs.
+
+I recently discovered `codecompanion.nvim` which aims to provide a similar
+experience. Per their helpfile, `:h codecompanion.txt`, it reads,
+
+> CodeCompanion is a productivity tool which streamlines how you develop with
+> LLMs, in Neovim.
+
+All documentation referred to in this article will be sourced from the
+Codecompanion NeoVim help document, unless otherwise specified.
+
+I have a theory that I haven't proven, but I believe the Copilot plugin is not
+as powerful because it lacks certain context. With Codecompanion, you can give
+the Chat this context.
+
+# Prerequisites
+
+Make sure you have an account with an LLM. I'm going to use GitHub Copilot.
+
+NeoVim is another obvious one that need installed. I will assume the reader is
+familiar with this tool.
+
+# Chat
+
+Chat is the main feature with any LLM right now. Most people just go to
+ChatGPT's website and start chatting with it. Coding is no different. What's
+become very useful as of lately is the ability to enhance chat with some
+familiar editor features, like diff management.
+
+Useful command:
+
+> `gy` to yank the last codeblock in the chat buffer
+
+Default prompts are super convenient. These are prompts you can enter
+into an LLM chat in a few words that are often repeated. CodeCompanion comes
+with the following default prompts. Here is a list of these as of this writing:
+
+- `Explain` - Explain how code in a buffer works
+- `Fix Code` - Fix the selected code
+- `Explain LSP Diagnostics` - Explain the LSP diagnostics for the selected code
+- `Unit Tests` - Generate unit tests for selected code
+- `Generate a Commit Message` - Generate a commit message
+
+These, combined with the `@editor` agent discussed later, make for a pretty
+seamless editing experience.
+
+NOTE: It helps to have `mini.diff` installed for a nicer graphical diff
+experience. If you're a reader who prefers the built-in Neovim diff tool, please
+reach out. I wish I understood it better.
+
+It'll show you what's in context with the Chat. Just look for something like
+this at the top or bottom:
+
+```
+> Sharing:
+> - <buf>posts/foo.txt</buf>
+```
+
+# Variables
+
+> Variables allow you to share data about the current state of Neovim with an
+> LLM.
+
+I pretty much always stick with `#buffer`. So far, I haven't had to use the
+other two, but `#lsp` and `#viewport` seem like powerful tools. One callout in
+the docs is that `#lsp` can be used to evaluate diagnostics. I could see that
+being helpful for confusing error messages, which happen all the time in
+Haskell.
+
+# Slash commands
+
+> Slash Commands enable you to quickly add context to the chat buffer.
+
+`/WORKSPACE` seems very powerful. Especially with the ability to build your own.
+`codecompanion-extending-workspace`
+
+Working with haskell I unfortunately received this error:
+
+```
+There are no Tree-sitter symbol queries for `haskell` files yet.
+Please consider making a PR.
+```
+
+Maybe that would be a nice thng to tackle in the future.
+
+# Agents / Tools
+
+The |codecompanion-usage-chat-buffer-agents-editor| tool enables an LLM to
+modify code in a Neovim buffer. This is especially useful if you do not wish to
+manually apply an LLM’s suggestions yourself. Simply tag it in the chat
+buffer with `@editor`.
+
+Unfortunately, editing Haskell did not go so well. It would make the correct
+diff, but it would also delete large chunks of code that I needed. I think this
+is very well could be user error. It also could be the LLM model that I used.
+
+# Example
+
+I gave this a spin on a personal project that I have in early development. This
+is a Haskell program that simulates a baseball game using "dice", i.e.
+`randomRIO`. In the `Logic.hs`, where the game logic is written, I tried
+`:CodecompanionChat` and then entered `#buffer Explain`. I got the following
+reply:
+
+> This module is designed to simulate the logic of a baseball game using dice
+> rolls to determine the outcomes of pitches and actions. It uses the `State`
+> monad to manage and update the game state throughout the game.
+
+As you can tell, there aren't a lot of comments in this file. It also gave me a
+pretty good breakdown of each function's purpose. Pretty good success for
+basic LLM interaction.
+
+# Conclusion
+
+Using Codecompanion has been great. The documentation is well written and rich
+with examples.
+
+<!--TODO: Link home manager config-->
+
+If you would like to check out my simple config, please see my Nixvim
+homemanager congiuration.
+
+You can probably use `codecompanion-usage-action-palette` to pimp out your key
+bindings.
+
+Check out https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/config.luafiles
+for some example configs.
+
+This is just the tip of the iceberg with this tool. Agentic workflows would be
+an interesting topic to cover in the future.
