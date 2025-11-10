@@ -21,12 +21,19 @@
         <nav>
           <a href="/">Home</a>
           <a href="/about.html">About</a>
-          <a href="/contact.html">Contact</a>
-          <a href="/archive.html">Archive</a>
+          <a href="/resume.html">Resume</a>
+          <a href="/blog.html">Blog</a>
         </nav>
       </header>
 
       <main role="main">
+        <div class="d-flex justify-content-end align-items-center mb-3">
+          $if(resume-page)$
+          <a href="/resume.pdf" class="btn btn-primary btn-sm" download>
+            📄 Download PDF
+          </a>
+          $endif$
+        </div>
         <h1>$title$</h1>
         $body$
       </main>

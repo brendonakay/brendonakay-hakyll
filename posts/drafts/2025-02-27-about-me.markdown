@@ -1,0 +1,101 @@
+---
+title: About me
+author: Brendon
+---
+
+For my first post I will write a little bit about myself. I'll share what my
+interests are, what my background is, and some personal ambitions. The first
+part will cover my professional qualities, and then I'll talk about some
+personal interests. I Hope you enjoy my ranting and please feel free to reach
+out with any opinions of your own, corrections or comments.
+
+## Profession
+
+_For detailed information on my career and education, please see my [resume
+page](/resume.html)._
+
+Throughout my career, I have worked primarily as a backend software engineer
+making web applications. Additionally, I did some work on data engineering and
+business intelligence projects. These applications were often data-intensive,
+monolithic, or distributed systems in varying combinations. I really find big
+data software to be such a fun space to work in.
+
+I have no preference toward any specific architectures. I try not to be
+dogmatic about the best tool. The most important thing to me regarding engineering
+is having a cohesive team with strong principles. Graciously, I have had the
+privilege of working with many smart individuals on all different types of teams.
+
+## Education
+
+Before I entered the industry, I completed my undergrad at a small, technical
+engineering college in Vermont. From my hands-on experience there I have
+developed a very pragmatic mindset with my approach to problem solving. I'm not
+keen on claims about the "smartest solution". Usually, I am starting with the
+simplest solution. My ego has never helped me crack a tough engineering
+problem. Collaboration and clear communication have.
+
+Simple has served me well in my career... but maybe I actually mean "elegant";
+mathematical elegance, specifically. Check out ["Elegance" in
+Wikipedia](https://en.wikipedia.org/wiki/Elegance):
+
+> ... the solution to a problem (such as a proof of a mathematical theorem)
+> exhibits mathematical elegance if it is **surprisingly simple and insightful
+> yet effective and constructive**.
+
+I think that properly describes what I'm trying to say. Especially with
+"effective and constructive".
+
+## Mathematics
+
+In college I met a wonderful professor who taught me math could actually
+be a joy. Later in my career, a colleague introduced me to Functional
+Programming. Both of these moments were transformative in my self study
+interests and ultimately my career.
+
+It has been a personal goal of mine to learn more about applied and
+pure mathematics and how they relate to functional programming. For example, the
+_Curry Howard Isomorphism_ is a fascinating topic in this space, and I've been
+introduced to it through many wonderful authors, such as Sandy Maguire and his
+book [_Thinking with Types_](https://thinkingwithtypes.com/) (which I highly
+recommend).
+
+## Philosophy
+
+Now I'm going to get really personal and philosophical. I am continuously
+fascinated by the importance and impact mathematics has on our level of human
+thought. I only have undergraduate training in math, which includes what most
+software engineers would learn; calculus and discrete mathematics. Proofs were
+covered in the discrete class. It's these things, math and programming, that
+really intrigue me.
+
+At the moment Haskell is my programming language of choice. It has
+built-in abstractions from Abstract Algebra and Category Theory. You can
+leverage these mathematical devices as tools for solving problems, and that to
+me is really cool. An interesting topic that I stumbled upon, for example,
+is _Algebraic Path Finding_. A method for generalizing shortest path algorithms
+using _Semirings_. I would really like to cover this more in a future post and
+dive into the text [_Path Problems in
+Networks_](https://user.eng.umd.edu/~baras/publications/Books/S00245ED1V01Y201001CNT003.pdf).
+
+So, it is my great ambition to bring these interests into my day-to-day job in
+enterprise-level software engineering. I want to develop hardened applications
+that are correct, simple and elegant. Sure, I don't mind throwing my typical Go
+hammer at any problem if something needs to get done. Engineering in Go is
+great! Slap some SQLite or Postgres in there and we can get a lot done. But I
+think it would be really, really cool to dive deeper into this world of
+Algebra, Computation, and thought.
+
+## Thanks
+
+One last addition before I wrap things up. I'd like to mention a few little
+details about my preferred dev environment. These are likely to become future
+topics for posts.
+
+A major tool I use is NeoVim, btw. I also am a huge fan of NixOS... also, btw.
+These two projects allow me to express the "hacker" in me. I'll discuss these
+things more in the future, but if you'd like to check out some Nix and NeoVim
+related stuff I have, please see my [dotfiles
+repo](https://github.com/brendonakay/nixos-dotfiles), which is a nix flake
+using home-manager and configures Nixvim, a nix-managed NeoVim Lua config.
+
+Thanks for reading.

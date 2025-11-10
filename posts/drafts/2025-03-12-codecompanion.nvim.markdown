@@ -30,9 +30,9 @@ more productive in this endeavour, though.
 
 Unless you are lucky or extremely intentional in avoiding it, you have
 probably experienced the LLM hype in one form or another. For most software
-engineers, this has come in the form of coding assistance. Some folks
-will just use the basic chat web interface, like chatgpt.com. Others are
-beginning to use fully integrated IDEs like Cursor.
+engineers, this has come in the form of coding assistants. Some folks
+will just use the basic chat web interface. Others are beginning to use fully
+integrated IDEs like Cursor.
 
 Cursor's product provides features that take chatting with the LLM a step
 furthor. For example, while chatting with the LLM you can have it diff your
