@@ -1,6 +1,7 @@
 ---
 title: About me
 author: Brendon
+tags: personal, mathematics, haskell, philosophy
 ---
 
 For my first post I will write a little bit about myself. I'll share what my

@@ -25,7 +25,6 @@ he past.
 - [ ] Make a script that publishes posts. (Moves files from drafts dir and sets
       correct date)
 - [ ] Better code styling CSS.
-- [ ] Tags.
 - [ ] BibTex.
   - https://javran.github.io/posts/2014-03-01-add-tags-to-your-hakyll-blog.html
 

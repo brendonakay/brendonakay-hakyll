@@ -13,6 +13,7 @@ main :: IO ()
 main = do
   includeDrafts <- fmap (== Just "true") (Env.lookupEnv "INCLUDE_DRAFTS")
   hakyll $ do
+    tags <- buildTags "posts/*" (fromCapture "tags/*.html")
     match "images/*" $ do
       route idRoute
       compile copyFileCompiler
@@ -41,12 +42,24 @@ main = do
             then "posts/*" .||. "posts/drafts/*"
             else "posts/*"
 
+    tagsRules tags $ \tag pattern -> do
+      route idRoute
+      compile $ do
+        posts <- recentFirst =<< loadAll pattern
+        let ctx = constField "title" ("Posts tagged \"" ++ tag ++ "\"")
+                  `mappend` listField "posts" (postCtxWithTags tags) (return posts)
+                  `mappend` defaultContext
+        makeItem ""
+          >>= loadAndApplyTemplate "templates/tag.html" ctx
+          >>= loadAndApplyTemplate "templates/default.html" ctx
+          >>= relativizeUrls
+
     match postsPattern $ do
       route $ setExtension "html"
       compile $
         pandocCompiler
-          >>= loadAndApplyTemplate "templates/post.html" postCtx
-          >>= loadAndApplyTemplate "templates/default.html" postCtx
+          >>= loadAndApplyTemplate "templates/post.html" (postCtxWithTags tags)
+          >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
           >>= relativizeUrls
 
     create ["blog.html"] $ do
@@ -54,7 +67,7 @@ main = do
       compile $ do
         posts <- recentFirst =<< loadAll postsPattern
         let blogCtx =
-              listField "posts" postCtx (return posts)
+              listField "posts" (postCtxWithTags tags) (return posts)
                 `mappend` defaultContext
 
         makeItem ""
@@ -67,7 +80,7 @@ main = do
       compile $ do
         posts <- recentFirst =<< loadAll postsPattern
         let indexCtx =
-              listField "posts" postCtx (return posts)
+              listField "posts" (postCtxWithTags tags) (return posts)
                 `mappend` defaultContext
 
         getResourceBody
@@ -81,6 +94,9 @@ postCtx :: Context String
 postCtx =
   dateField "date" "%B %e, %Y"
     `mappend` defaultContext
+
+postCtxWithTags :: Tags -> Context String
+postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
 
 makePDF' :: String -> IO BL.ByteString
 makePDF' content = do
