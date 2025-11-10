@@ -8,6 +8,8 @@ executable site
   build-depends:    base == 4.*
                   , hakyll == 4.16.*
                   , pandoc
+                  , pandoc-types
+                  , skylighting
                   , bytestring
                   , process
                   , temporary
