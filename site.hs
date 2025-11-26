@@ -1,20 +1,29 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import qualified Data.ByteString.Lazy as BL
 import qualified Data.ByteString.Lazy.Char8 as L8
 import Data.Monoid (mappend)
 import Hakyll
+import Skylighting.Styles (parseTheme)
 import qualified System.Environment as Env
 import System.IO (hClose)
 import System.IO.Temp (withSystemTempFile)
 import System.Process (callProcess)
-import Text.Pandoc.Options
-import Text.Pandoc.Highlighting
 import Text.Pandoc.Extensions
+import Text.Pandoc.Highlighting (Style, styleToCss)
+import Text.Pandoc.Options
+
+-- Define the code highlighting style
+loadEverforestTheme :: IO Style
+loadEverforestTheme = do
+  themeJson <- L8.readFile "everforest.theme"
+  case parseTheme themeJson of
+    Left err -> error $ "Failed to parse Everforest theme: " ++ err
+    Right style -> return style
 
 main :: IO ()
 main = do
   includeDrafts <- fmap (== Just "true") (Env.lookupEnv "INCLUDE_DRAFTS")
+  codeStyle <- loadEverforestTheme
   hakyll $ do
     let postsPattern =
           if includeDrafts
@@ -22,6 +31,11 @@ main = do
             else "posts/*"
 
     tags <- buildTags postsPattern (fromCapture "tags/*.html")
+
+    -- Generate syntax highlighting CSS
+    create ["css/syntax.css"] $ do
+      route idRoute
+      compile $ makeItem $ styleToCss codeStyle
     match "images/*" $ do
       route idRoute
       compile copyFileCompiler
@@ -33,7 +47,7 @@ main = do
     match (fromList ["about.markdown", "contact.markdown", "resume.markdown"]) $ do
       route $ setExtension "html"
       compile $
-        customPandocCompiler
+        customPandocCompiler codeStyle
           >>= loadAndApplyTemplate "templates/default.html" defaultContext
           >>= relativizeUrls
 
@@ -61,7 +75,7 @@ main = do
     match postsPattern $ do
       route $ setExtension "html"
       compile $
-        customPandocCompiler
+        customPandocCompiler codeStyle
           >>= loadAndApplyTemplate "templates/post.html" (postCtxWithTags tags)
           >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
           >>= relativizeUrls
@@ -103,21 +117,25 @@ postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
 
 -- Custom Pandoc compiler with syntax highlighting
-customPandocCompiler :: Compiler (Item String)
-customPandocCompiler = pandocCompilerWith customReaderOptions customWriterOptions
+customPandocCompiler :: Style -> Compiler (Item String)
+customPandocCompiler codeStyle = pandocCompilerWith customReaderOptions customWriterOptions
   where
-    customReaderOptions = defaultHakyllReaderOptions
-      { readerExtensions = enableExtension Ext_tex_math_dollars $
-                          enableExtension Ext_tex_math_single_backslash $
-                          enableExtension Ext_tex_math_double_backslash $
-                          readerExtensions defaultHakyllReaderOptions
-      }
-    customWriterOptions = defaultHakyllWriterOptions
-      { writerHighlightStyle = Just pygments
-      , writerHTMLMathMethod = MathJax ""
-      }
+    customReaderOptions =
+      defaultHakyllReaderOptions
+        { readerExtensions =
+            enableExtension Ext_tex_math_dollars $
+              enableExtension Ext_tex_math_single_backslash $
+                enableExtension Ext_tex_math_double_backslash $
+                  enableExtension Ext_fenced_code_attributes $
+                    readerExtensions defaultHakyllReaderOptions
+        }
+    customWriterOptions =
+      defaultHakyllWriterOptions
+        { writerHighlightStyle = Just codeStyle, -- Use custom Everforest highlighting
+          writerHTMLMathMethod = MathJax ""
+        }
 
-makePDF' :: String -> IO BL.ByteString
+makePDF' :: String -> IO L8.ByteString
 makePDF' content = do
   let cleanedContent = stripFrontMatter content
   withSystemTempFile "resume.md" $ \mdPath mdHandle -> do
@@ -137,7 +155,7 @@ makePDF' content = do
           "-V",
           "linestretch=0.9"
         ]
-      BL.readFile pdfPath
+      L8.readFile pdfPath
 
 stripFrontMatter :: String -> String
 stripFrontMatter content =

@@ -163,7 +163,8 @@ main h4,
 main h5,
 main ol,
 main ul,
-main blockquote {
+main blockquote,
+main .sourceCode {
   max-width: 600px;
   width: 100%;
   margin: auto;
@@ -180,7 +181,8 @@ main blockquote {
   main h5,
   main ol,
   main ul,
-  main blockquote {
+  main blockquote,
+  main .sourceCode {
     max-width: 100%;
     margin-left: 0;
     margin-right: 0;
@@ -257,4 +259,30 @@ main blockquote {
   margin-bottom: 1em;
   padding-bottom: 1em;
   font-style: italic;
+}
+
+/* Code block styling - prevent overflow and add horizontal scroll */
+.sourceCode {
+  overflow-x: auto;
+  border-radius: 4px;
+}
+
+pre.sourceCode {
+  margin: 0;
+  padding: 1em;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* Ensure code blocks don't break layout on mobile */
+@media (max-width: 768px) {
+  .sourceCode {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .sourceCode {
+    font-size: 0.8em;
+  }
 }

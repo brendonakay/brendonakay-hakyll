@@ -4,13 +4,15 @@ author: Brendon
 tags: personal, mathematics, haskell, philosophy
 ---
 
+## Introduction
+
 For my first post I will write a little bit about myself. I'll share what my
 interests are, what my background is, and some of my ambitions. The first
 part will cover my professional qualities, and then I'll talk about some
 personal interests. I Hope you enjoy my ranting and please feel free to reach
 out with any opinions of your own, corrections or comments.
 
-## Profession
+## Career
 
 _For detailed information on my career and education, please see my [resume
 page](/resume.html)._
@@ -91,7 +93,7 @@ One last addition before I wrap things up. I'd like to mention a few little
 details about my preferred dev environment. These are likely to become future
 topics for posts.
 
-A major tool I use is NeoVim, btw. I also am a huge fan of NixOS... also, btw.
+A major tool I use is NeoVim (btw). I also am a huge fan of NixOS (also, btw).
 These two projects allow me to express the "hacker" in me. I'll discuss these
 things more in the future, but if you'd like to check out some Nix and NeoVim
 related stuff I have, please see my [dotfiles

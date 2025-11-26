@@ -30,6 +30,7 @@ he past.
 
 ## Blog post ideas
 
+- Adjacency Matrix in graphs
 - Math notation in Markdown
 - Vimwiki
 - Hakyll
