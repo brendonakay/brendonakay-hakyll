@@ -16,6 +16,18 @@ body {
   padding: 30px 15px 0 15px;
 }
 
+/* Override Bootstrap flexbox to prevent mobile layout issues */
+@media (max-width: 768px) {
+  body.d-flex {
+    display: block !important;
+  }
+
+  body.d-flex .text-left {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     padding: 15px 10px 0 10px;
@@ -184,8 +196,8 @@ main .sourceCode {
   main blockquote,
   main .sourceCode {
     max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -265,6 +277,8 @@ main blockquote {
 .sourceCode {
   overflow-x: auto;
   border-radius: 4px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 pre.sourceCode {
@@ -272,6 +286,8 @@ pre.sourceCode {
   padding: 1em;
   white-space: pre;
   overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Ensure code blocks don't break layout on mobile */
@@ -279,10 +295,61 @@ pre.sourceCode {
   .sourceCode {
     font-size: 0.9em;
   }
+
+  pre.sourceCode {
+    padding: 0.8em;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
 }
 
 @media (max-width: 480px) {
   .sourceCode {
+    font-size: 0.75em;
+  }
+
+  pre.sourceCode {
+    padding: 0.6em;
+    white-space: pre-wrap;
+    word-break: break-all;
+    line-height: 1.4;
+  }
+}
+
+/* Math expressions and MathJax responsive handling */
+.MathJax_Display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .MathJax_Display {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .MathJax_Display {
     font-size: 0.8em;
+  }
+}
+
+/* Prevent any content from overflowing the main container */
+main * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Handle long URLs and text that might overflow */
+main a {
+  word-break: break-word;
+}
+
+@media (max-width: 480px) {
+  main p,
+  main li {
+    word-break: break-word;
+    hyphens: auto;
   }
 }
