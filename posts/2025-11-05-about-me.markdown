@@ -6,11 +6,11 @@ tags: personal, mathematics, haskell, philosophy
 
 ## Introduction
 
-For my first post I will write a little bit about myself. I'll share what my
-interests are, what my background is, and some of my ambitions. The first
-part will cover my professional qualities, and then I'll talk about some
-personal interests. I Hope you enjoy my ranting and please feel free to reach
-out with any opinions of your own, corrections or comments.
+For my first post I will write a little bit about myself. I'll share with you,
+kind reader, my interests, my background, and some of my ambitions. The first
+part will cover my career, and then I'll talk about some personal interests. I
+hope you enjoy my ranting and please feel free to reach out with any opinions
+of your own, corrections or comments.
 
 ## Career
 
@@ -31,22 +31,22 @@ privilege of working with many smart individuals on all different types of teams
 ## Education
 
 Before I entered the industry, I completed my undergrad at a small, technical
-engineering college in Vermont. From my hands-on experience there I have
+engineering college in Vermont. From my hands-on experience there, I have
 developed a very pragmatic mindset with my approach to problem solving. I'm not
 keen on claims about the "smartest solution". Usually, I am starting with the
 simplest solution. My ego has never helped me crack a tough engineering
 problem. Collaboration and clear communication have.
 
 Simple has served me well in my career... but maybe I actually mean "elegant";
-mathematical elegance, specifically. Check out ["Elegance" in
+mathematical elegance, specifically. [From
 Wikipedia](https://en.wikipedia.org/wiki/Elegance):
 
 > ... the solution to a problem (such as a proof of a mathematical theorem)
 > exhibits mathematical elegance if it is **surprisingly simple and insightful
 > yet effective and constructive**.
 
-I think that properly describes what I'm trying to say. Especially with
-"effective and constructive".
+I think that properly describes what I'm trying to say. Especially around what
+is "effective and constructive".
 
 ## Mathematics
 
@@ -64,19 +64,19 @@ recommend).
 
 ## Philosophy
 
-Now I'm going to get more personal and philosophical. I am continuously
+Now let's get more personal and philosophical. I am continuously
 fascinated by the importance and impact mathematics has on our level of human
-thought. I only have an undergraduate engineering training in math, which
-includes what most software engineers would learn; calculus and discrete
-mathematics. Proofs were covered in the discrete class. It's these things, math
-and programming, that really intrigue me and I believe this relationship can be
-tapped for improving the day-to-day lives of engineers.
+thought. I only have an undergraduate engineering level of training in math,
+which includes what most software engineers would learn; calculus, discrete
+mathematics, linear algebra, etc. Proofs were covered in the discrete class.
+It's these things, math and programming, that really intrigue me and I believe
+this relationship can be tapped for new tools we can use as engineers.
 
 At the moment Haskell is my programming language of choice. It has
 built-in abstractions from Abstract Algebra and Category Theory. You can
 leverage these mathematical devices as tools for solving problems, and that to
 me is really cool. An interesting topic that I stumbled upon, for example,
-is _Algebraic Path Finding_. A method for generalizing shortest path algorithms
+is the _Algebraic Path Finding_. A method for generalizing shortest path algorithms
 using _Semirings_. I would really like to cover this more in a future post and
 dive into the text [_Path Problems in
 Networks_](https://user.eng.umd.edu/~baras/publications/Books/S00245ED1V01Y201001CNT003.pdf).

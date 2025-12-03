@@ -11,6 +11,10 @@ import System.Process (callProcess)
 import Text.Pandoc.Extensions
 import Text.Pandoc.Highlighting (Style, styleToCss)
 import Text.Pandoc.Options
+import Text.Pandoc.Walk (walk)
+import Text.Pandoc.Definition
+import Text.Regex.Posix ((=~))
+import qualified Data.Text as T
 
 -- Define the code highlighting style
 loadEverforestTheme :: IO Style
@@ -116,9 +120,30 @@ postCtx =
 postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
 
--- Custom Pandoc compiler with syntax highlighting
+-- Remove email addresses from Pandoc content
+removeEmails :: Pandoc -> Pandoc
+removeEmails = walk removeEmailsFromInline
+  where
+    removeEmailsFromInline :: Inline -> Inline
+    removeEmailsFromInline (Str text) = Str (removeEmailFromText text)
+    removeEmailsFromInline (Link attr [Str text] (url, title))
+      | isEmailUrl url = Str (T.pack "[email removed]")
+    removeEmailsFromInline x = x
+    
+    removeEmailFromText :: T.Text -> T.Text
+    removeEmailFromText text = 
+      let textStr = T.unpack text
+          emailRegex = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}" :: String
+      in if textStr =~ emailRegex 
+         then T.pack "[email removed]"
+         else text
+    
+    isEmailUrl :: T.Text -> Bool
+    isEmailUrl url = T.take 7 url == T.pack "mailto:"
+
+-- Custom Pandoc compiler with syntax highlighting and email removal
 customPandocCompiler :: Style -> Compiler (Item String)
-customPandocCompiler codeStyle = pandocCompilerWith customReaderOptions customWriterOptions
+customPandocCompiler codeStyle = pandocCompilerWithTransform customReaderOptions customWriterOptions removeEmails
   where
     customReaderOptions =
       defaultHakyllReaderOptions
