@@ -60,6 +60,38 @@ div.logo a {
   font-weight: bold;
   text-decoration: none;
   text-shadow: none;
+  display: block;
+}
+
+div.logo .logo-image-container {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 10px auto;
+  display: block;
+  background-color: #d8ba7e;
+  border-radius: 50%;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+div.logo img.logo-image {
+  width: 160%;
+  height: 160%;
+  object-fit: contain;
+  transform: translate(-30px, -45px);
+}
+
+div.logo .logo-text {
+  display: block;
+}
+
+@media (max-width: 480px) {
+  div.logo .logo-image-container {
+    width: 180px;
+    height: 180px;
+  }
 }
 
 header nav {
@@ -108,7 +140,7 @@ footer {
   background: #232a2e;
   color: #859289;
   font-size: 12px;
-  padding: 32px 0px 32px 0px;
+  padding: 16px 0px 16px 0px;
   text-align: center;
   position: fixed;
   bottom: 0;
