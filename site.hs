@@ -81,6 +81,7 @@ main = do
       compile $
         customPandocCompiler codeStyle
           >>= loadAndApplyTemplate "templates/post.html" (postCtxWithTags tags)
+          >>= saveSnapshot "content"
           >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
           >>= relativizeUrls
 
@@ -96,6 +97,12 @@ main = do
           >>= loadAndApplyTemplate "templates/blog.html" blogCtx
           >>= loadAndApplyTemplate "templates/default.html" blogCtx
           >>= relativizeUrls
+
+    create ["rss.xml"] $ do
+      route idRoute
+      compile $ do
+        posts <- fmap (take 10) . recentFirst =<< loadAllSnapshots postsPattern "content"
+        renderRss feedConfiguration feedCtx posts
 
     match "index.html" $ do
       route idRoute
@@ -119,6 +126,19 @@ postCtx =
 
 postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
+
+feedCtx :: Context String
+feedCtx = postCtx `mappend` bodyField "description"
+
+feedConfiguration :: FeedConfiguration
+feedConfiguration =
+  FeedConfiguration
+    { feedTitle = "Brendon A. Kay",
+      feedDescription = "Software Engineer specializing in backend systems and functional programming.",
+      feedAuthorName = "Brendon A. Kay",
+      feedAuthorEmail = "",
+      feedRoot = "https://brendonakay.github.io"
+    }
 
 -- Remove email addresses from Pandoc content
 removeEmails :: Pandoc -> Pandoc
