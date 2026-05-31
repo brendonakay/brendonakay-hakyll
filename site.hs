@@ -1,8 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import qualified Data.ByteString.Lazy.Char8 as L8
+import Data.List (isPrefixOf, isSuffixOf)
 import Data.Monoid (mappend)
 import Hakyll
+import System.FilePath (takeFileName)
 import Skylighting.Styles (parseTheme)
 import qualified System.Environment as Env
 import System.IO (hClose)
@@ -28,7 +30,7 @@ main :: IO ()
 main = do
   includeDrafts <- fmap (== Just "true") (Env.lookupEnv "INCLUDE_DRAFTS")
   codeStyle <- loadEverforestTheme
-  hakyll $ do
+  hakyllWith defaultConfiguration { ignoreFile = simpleIgnoreFile } $ do
     let postsPattern =
           if includeDrafts
             then "posts/*" .||. "posts/drafts/*"
@@ -85,7 +87,7 @@ main = do
           >>= loadAndApplyTemplate "templates/default.html" (postCtxWithTags tags)
           >>= relativizeUrls
 
-    create ["blog.html"] $ do
+    rulesExtraDependencies [AlwaysOutOfDate] $ create ["blog.html"] $ do
       route idRoute
       compile $ do
         posts <- recentFirst =<< loadAll postsPattern
@@ -98,13 +100,13 @@ main = do
           >>= loadAndApplyTemplate "templates/default.html" blogCtx
           >>= relativizeUrls
 
-    create ["rss.xml"] $ do
+    rulesExtraDependencies [AlwaysOutOfDate] $ create ["rss.xml"] $ do
       route idRoute
       compile $ do
         posts <- fmap (take 10) . recentFirst =<< loadAllSnapshots postsPattern "content"
         renderRss feedConfiguration feedCtx posts
 
-    match "index.html" $ do
+    rulesExtraDependencies [AlwaysOutOfDate] $ match "index.html" $ do
       route idRoute
       compile $ do
         posts <- recentFirst =<< loadAll postsPattern
@@ -118,6 +120,19 @@ main = do
           >>= relativizeUrls
 
     match "templates/*" $ compile templateBodyCompiler
+
+-- Custom ignore function that doesn't defer to git, so .gitignore doesn't
+-- affect which files Hakyll processes (e.g. posts/drafts/).
+simpleIgnoreFile :: FilePath -> Bool
+simpleIgnoreFile path
+  | "."    `isPrefixOf` fileName = True
+  | "_"    `isPrefixOf` fileName = True
+  | "#"    `isPrefixOf` fileName = True
+  | "~"    `isSuffixOf` fileName = True
+  | ".swp" `isSuffixOf` fileName = True
+  | otherwise                    = False
+  where
+    fileName = takeFileName path
 
 postCtx :: Context String
 postCtx =
