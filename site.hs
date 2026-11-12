@@ -33,7 +33,7 @@ main = do
   hakyllWith defaultConfiguration { ignoreFile = simpleIgnoreFile } $ do
     let postsPattern =
           if includeDrafts
-            then "posts/*" .||. "posts/drafts/*"
+            then "posts/*" .||. fromRegex "^posts/drafts/[0-9]{4}-[0-9]{2}-[0-9]{2}-.*\\.markdown$"
             else "posts/*"
 
     tags <- buildTags postsPattern (fromCapture "tags/*.html")
@@ -209,11 +209,13 @@ makePDF' content = do
           "-o",
           pdfPath,
           "-V",
-          "geometry:margin=0.5in",
+          "geometry:margin=0.4in",
           "-V",
           "fontsize=11pt",
           "-V",
-          "linestretch=0.9"
+          "linestretch=0.9",
+          "-V",
+          "pagestyle=empty"
         ]
       L8.readFile pdfPath
 
